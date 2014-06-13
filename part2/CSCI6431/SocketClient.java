@@ -1,18 +1,11 @@
 package CSCI6431;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.Random;
 
@@ -29,7 +22,6 @@ public class SocketClient {
 		String synack = "SYN-ACK";
 		String wsp = " ";
 		String eol = "\\n";
-//		String userInput;
 		String reply;
 		Random rand = new Random();
 		int seqA = rand.nextInt(Integer.MAX_VALUE);
@@ -42,9 +34,18 @@ public class SocketClient {
 
 			System.out.println("Just connected to " + client.getRemoteSocketAddress());
 			
+			//this should be the server
 			String hostIP = client.getInetAddress().getHostAddress();
-			String hostname = client.getInetAddress().getHostName();
-			String initMsg = syn + wsp + hostIP + wsp + hostname + wsp + seqA + eol;
+			//this should be the server
+			String hostName = client.getInetAddress().getHostName();
+			
+			String clientIP = client.getLocalAddress().getHostAddress();
+			String clientName = "ChrisClient";
+			
+			System.out.println(hostIP + ", " + hostName + ", " + clientIP + ", " + clientName);
+			
+//			String initMsg = syn + wsp + hostIP + wsp + hostname + wsp + seqA + eol;
+			String initMsg = syn + wsp + clientIP + wsp + clientName + wsp + seqA;
 			System.out.println("Sending: " + initMsg);
 			out.println(initMsg);
 			reply = in.readLine();
@@ -64,7 +65,8 @@ public class SocketClient {
 		    	client.close();
 		    	System.exit(-1);
 		    } else {
-		    	String msg2 = synack + wsp + hostIP + wsp + hostname + wsp + (seqA + 1 + 1) + wsp + (rtnSeqB1 + 1) + eol;
+//		    	String msg2 = synack + wsp + clientIP + wsp + clientName + wsp + (seqA + 1 + 1) + wsp + (rtnSeqB1 + 1) + eol;
+		    	String msg2 = synack + wsp + clientIP + wsp + clientName + wsp + (seqA + 1 + 1) + wsp + (rtnSeqB1 + 1);
 		    	System.out.println("Sendng: " + msg2);
 		    	out.println(msg2);
 		    }
@@ -81,18 +83,13 @@ public class SocketClient {
 			} else {
 				System.out.println("returnFromServer: " + reply);
 				String msg3 = "I'm done with project 1!";
-				System.out.println("Sending: " + msg3 + eol);
+//				System.out.println("Sending: " + msg3 + eol);
+				System.out.println("Sending: " + msg3);
 				out.println(msg3);
 			}
 		    
-//			while ((userInput = stdIn.readLine()) != "quit") {
-//			    out.println(userInput + eol);
-//			    out.flush();
-//			    System.out.println("echo: " + in.readLine());
-//			    userInput = null;
-//			}
-//			System.out.println("Closing connection!");
-//			client.close();
+			System.out.println("Closing connection!");
+			client.close();
 		} catch (UnknownHostException e) {
 			System.out.println("Caught UnknownHostException: " + e.getMessage());
 		} catch (EOFException e) {
