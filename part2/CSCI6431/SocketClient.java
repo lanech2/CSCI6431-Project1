@@ -1,4 +1,4 @@
-package CSCI6431;
+package csci6431;
 
 import java.io.BufferedReader;
 import java.io.EOFException;
