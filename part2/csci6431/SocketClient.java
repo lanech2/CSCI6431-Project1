@@ -39,7 +39,8 @@ public class SocketClient {
 			//this should be the server
 			String hostName = client.getInetAddress().getHostName();
 			
-			String clientIP = client.getLocalAddress().getHostAddress();
+//			String clientIP = client.getLocalAddress().getHostAddress();
+			String clientIP = client.getInetAddress().getLocalHost().getHostAddress();
 			String clientName = "ChrisClient";
 			
 			System.out.println(hostIP + ", " + hostName + ", " + clientIP + ", " + clientName);
