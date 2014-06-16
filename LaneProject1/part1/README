@@ -1,0 +1,14 @@
+#README file for CSCI 6431, Computer Networks, GWU Summer 2014
+#Project 1, Part 1, SocketServer
+
+Compiling is simple;
+- Requirements: latest version of Java SDK installed
+- cd into the part1 directory
+- ensure javac is accessible through your path.
+- type "javac csci6431/SocketServer.java"; this will compile the program and output csci6431/SocketServer.class.
+
+Running is also simple:
+- cd into the part1 directory
+- type "java csci6431.SocketServer <port number>"; server will start and await your input.
+- When you are finished, type "quit" and the server and client will terminate.
+

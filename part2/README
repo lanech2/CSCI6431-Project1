@@ -1,0 +1,24 @@
+#README file for CSCI 6431, Computer Networks, GWU Summer 2014
+#Project 1, Part 2, SocketClient for HandshakeServer
+
+Compiling is simple;
+- Requirements: latest version of Java SDK installed
+- cd into the part2 directory
+- ensure javac is accessible through your path.
+- type "javac csci6431/SocketClient.java"; this will compile the program and output csci6431/SocketClient.class.
+
+Running is also simple:
+- cd into the part2 directory
+- type "java csci6431.SocketClient <server IP> <port number>"; program will connect to the server, 
+	exchange handshake data, and finally send "I'm done with project 1!".
+
+Example output is shown below:
+Just connected to /10.201.3.96:2000
+10.201.3.96, 10.201.3.96, 10.201.3.96, ChrisClient
+Sending: SYN 10.201.3.96 ChrisClient 1714448800
+returnFromServer: SYN-ACK 10.201.3.96 SERVER 1714448801 366697
+Sendng: SYN-ACK 10.201.3.96 ChrisClient 1714448802 366698
+returnFromServer: ACK 10.201.3.96 SERVER 1714448803 366699
+Sending: I'm done with project 1!
+Closing connection!
+

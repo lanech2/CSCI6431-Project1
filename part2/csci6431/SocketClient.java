@@ -21,7 +21,7 @@ public class SocketClient {
 		String syn = "SYN";
 		String synack = "SYN-ACK";
 		String wsp = " ";
-		String eol = "\\n";
+//		String eol = "\\n";
 		String reply;
 		Random rand = new Random();
 		int seqA = rand.nextInt(Integer.MAX_VALUE);
@@ -39,13 +39,11 @@ public class SocketClient {
 			//this should be the server
 			String hostName = client.getInetAddress().getHostName();
 			
-//			String clientIP = client.getLocalAddress().getHostAddress();
 			String clientIP = client.getInetAddress().getLocalHost().getHostAddress();
 			String clientName = "ChrisClient";
 			
 			System.out.println(hostIP + ", " + hostName + ", " + clientIP + ", " + clientName);
 			
-//			String initMsg = syn + wsp + hostIP + wsp + hostname + wsp + seqA + eol;
 			String initMsg = syn + wsp + clientIP + wsp + clientName + wsp + seqA;
 			System.out.println("Sending: " + initMsg);
 			out.println(initMsg);
@@ -66,9 +64,8 @@ public class SocketClient {
 		    	client.close();
 		    	System.exit(-1);
 		    } else {
-//		    	String msg2 = synack + wsp + clientIP + wsp + clientName + wsp + (seqA + 1 + 1) + wsp + (rtnSeqB1 + 1) + eol;
 		    	String msg2 = synack + wsp + clientIP + wsp + clientName + wsp + (seqA + 1 + 1) + wsp + (rtnSeqB1 + 1);
-		    	System.out.println("Sendng: " + msg2);
+		    	System.out.println("Sending: " + msg2);
 		    	out.println(msg2);
 		    }
 
@@ -84,7 +81,6 @@ public class SocketClient {
 			} else {
 				System.out.println("returnFromServer: " + reply);
 				String msg3 = "I'm done with project 1!";
-//				System.out.println("Sending: " + msg3 + eol);
 				System.out.println("Sending: " + msg3);
 				out.println(msg3);
 			}

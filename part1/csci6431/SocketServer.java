@@ -15,11 +15,11 @@ public class SocketServer {
 	public static void main(String[] args) {
 		 
         if (args.length != 1) {
-            System.err.println("Usage: java SocketServer <port number>");
+            System.err.println("Usage: java csci6431.SocketServer <port number>");
             System.exit(1);
         }
          
-        int portNumber = Integer.parseInt(args[0]);
+        int port = Integer.parseInt(args[0]);
         
         System.out.println("Server starting, awaiting connections ...");
          
@@ -42,8 +42,8 @@ public class SocketServer {
                 out.println("> " + inputLine);
             }
         } catch (IOException e) {
-            System.out.println("Exception caught when trying to listen on port "
-                + portNumber + " or listening for a connection");
+            System.out.println("We caught an exception while trying to listen on port "
+                + port + " or listening for a connection");
             System.out.println(e.getMessage());
         }
     }
